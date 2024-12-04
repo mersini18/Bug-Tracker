@@ -21,7 +21,7 @@ def login():
 
         
     
-    return render_template('login.html')
+    return render_template('login.html', show_navbar=False)
 
 @auth_bp.route('/register', methods=['GET','POST'])
 def register():
@@ -44,8 +44,8 @@ def register():
         flash('Registration successful!', 'success')
         return redirect(url_for('auth.login'))
 
-    return render_template('register.html')
+    return render_template('register.html', show_navbar=False)
 
 @auth_bp.route('/')
 def home():
-    return '<h1>Welcome to the Bug Tracker</h1>?'
+    return redirect(url_for('auth.register'))
