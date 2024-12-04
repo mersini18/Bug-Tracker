@@ -7,7 +7,8 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)  # Primary key
     username = db.Column(db.String(80), unique=True, nullable=False)  # Unique username
     password = db.Column(db.String(200), nullable=False)  # Hashed password
-    role = db.Column(db.String(10), nullable=False)  # 'user' or 'admin'
+    email = db.Column(db.String(200), unique=True, nullable=False)
+    role = db.Column(db.String(10), nullable=False, default='user')  # 'user' or 'admin'
     bugs_reported = db.relationship('Bug', foreign_keys='Bug.reported_by', backref='reporter', lazy=True)
     bugs_assigned = db.relationship('Bug', foreign_keys='Bug.assigned_to', backref='assignee', lazy=True)
 
