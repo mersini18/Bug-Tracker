@@ -4,7 +4,7 @@ __pycache__/
 
 bug_tracker/venv/
 
-.vscode/
+bug_tracker/.vscode/
 
 
 .DS_Store
