@@ -71,7 +71,6 @@ def test_register_missing_fields(client):
     assert response.headers['Location'] == '/home/'
 
 def test_login_valid(client):
-    # Perform login request without following redirects
     response = client.post('/login', data={
         'username': 'testuser',
         'password': 'password'
@@ -84,8 +83,6 @@ def test_login_valid(client):
     with client.session_transaction() as session:
         flashed_messages = session['_flashes']
         assert ('success', 'Login successful!') in flashed_messages
-
-
 
 def test_login_invalid(client):
     response = client.post('/login', data={
@@ -101,8 +98,6 @@ def test_login_invalid(client):
     with client.session_transaction() as session:
         flashed_messages = session['_flashes']
         assert ('error', 'Invalid username or password') in flashed_messages
-
-
 
 def test_logout(client):
     # Log in first
