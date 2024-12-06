@@ -1,2 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+
+bug_tracker/venv/
+
+.vscode/
+
+
 .DS_Store
 .env
