@@ -3,7 +3,7 @@ __pycache__/
 *.pyo
 
 bug_tracker/venv/
-
+bug_tracker/.pytest_cache
 bug_tracker/.vscode/
 .vscode/
 
