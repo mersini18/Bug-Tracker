@@ -5,6 +5,7 @@ __pycache__/
 bug_tracker/venv/
 
 bug_tracker/.vscode/
+.vscode/
 
 
 .DS_Store
