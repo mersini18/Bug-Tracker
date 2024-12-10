@@ -21,6 +21,9 @@
                 <th>Description</th>
                 <th>Status</th>
                 <th>Priority</th>
+                <th>Assigned To</th>
+                <th>Reported By</th>
+                <th>Project Id</th>
             </tr>
         </thead>
         <tbody>
@@ -31,6 +34,9 @@
                 <td>{{ bug.description }}</td>
                 <td>{{ bug.status }}</td>
                 <td>{{ bug.priority }}</td>
+                <td>{{ bug.assigned_to }}</td>
+                <td>{{ bug.reported_by }}</td>
+                <td>{{ bug.project_id }}</td>
             </tr>
             {% else %}
             <tr>
@@ -42,7 +48,7 @@
 
     <!-- Action Buttons -->
     <div class="action-buttons">
-        <button class="btn btn-success btn-create" disabled>Create Bug</button> <!-- Placeholder for "Create Bug" -->
+        <a href="{{ url_for('bug.add_bug') }}" class="btn btn-success btn-create">Create Bug</a>
         <button class="btn btn-primary btn-filter" disabled>Search/Filter</button> <!-- Placeholder for "Search/Filter" -->
     </div>
 </div>
