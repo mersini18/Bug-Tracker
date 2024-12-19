@@ -9,10 +9,11 @@ import bcrypt
 
 @pytest.fixture
 def client():
-    app = create_app()
-    app.config['TESTING'] = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'  # In-memory database for tests
-    app.config['SECRET_KEY'] = 'test_secret_key'
+    app = create_app({
+    'TESTING': True,
+    'SQLALCHEMY_DATABASE_URI': 'sqlite:///:memory:',  # Use an in-memory DB for tests
+    'SECRET_KEY': 'test_secret_key',
+    })
     with app.test_client() as client:
         with app.app_context():
             db.drop_all()
