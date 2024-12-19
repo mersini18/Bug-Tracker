@@ -52,3 +52,21 @@ def add_bug():
     projects = Project.query.all()
     users = User.query.all()
     return render_template('add_bug.html', projects=projects, users=users)
+
+@bug_bp.route('/delete-bug/<int:bug_id>', methods=['POST'])
+@login_required
+def delete_bug(bug_id):
+    # Ensure only admins can delete bugs
+    if current_user.role != 'admin':
+        flash("You do not have permission to delete bugs.", "error")
+        return redirect(url_for('bug.home'))
+
+    # Query for the bug
+    bug = Bug.query.get_or_404(bug_id)
+
+    # Delete the bug
+    db.session.delete(bug)
+    db.session.commit()
+
+    flash("Bug deleted successfully.", "success")
+    return redirect(url_for('bug.home'))

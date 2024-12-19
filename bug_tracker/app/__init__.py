@@ -14,13 +14,17 @@ def load_user(user_id):
     with db.session() as session:
         return session.get(User, int(user_id))
     
-def create_app():
+def create_app(test_config=None):
     load_dotenv()
 
     app = Flask(__name__)
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bug_tracker.db'
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+    print("Database Path:", app.config['SQLALCHEMY_DATABASE_URI'])
+
+    if test_config:
+        app.config.update(test_config)
 
     db.init_app(app)
     login_manager.init_app(app)
@@ -31,7 +35,9 @@ def create_app():
 
     from app.routes.auth_routes import auth_bp
     from app.routes.bug_routes import bug_bp
+    from app.routes.admin_routes import admin_bp
     app.register_blueprint(auth_bp)
     app.register_blueprint(bug_bp)
+    app.register_blueprint(admin_bp)
 
     return app
