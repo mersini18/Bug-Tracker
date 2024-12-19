@@ -40,7 +40,8 @@ header.dashboard-header nav a:hover {
 }
 
 .footer {
-    position: fixed;
+    position: realtive;
+    margin-top: 10px;
     bottom: 0;
     left: 0;
     width: 100%;
