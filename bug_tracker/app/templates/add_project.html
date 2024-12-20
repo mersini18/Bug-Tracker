@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Add Project{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Add a new Project</h2>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('project.add_project') }} " method="POST">
+        <div class="mb-3">
+            <label for="title" class="form-label">Project Name</label>
+            <input type="name" id="name" name="name" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Project Description</label>
+            <textarea id="description" name="description" class="form-control" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Add Project</button>
+    </form>
+    <a href="{{ url_for('project.projects') }}" class="btn btn-danger w-100 mt-3">Back to Projects Dashboard</a>
+</div>
+{% endblock %}

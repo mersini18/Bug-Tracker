@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
+
+from app.forms import RegisterForm
 from app.models import db, User
 
 import bcrypt
@@ -27,26 +29,22 @@ def login():
 
 @auth_bp.route('/register', methods=['GET','POST'])
 def register():
-    if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
-        email = request.form.get('email')
-
-        existingUser = User.query.filter((User.username == username) | (User.email == email)).first()
-        if existingUser:
-            flash('User already exists!', 'error')
+    form = RegisterForm()
+    if form.validate_on_submit():  # This checks all validations
+        # Perform server-side checks like unique email/username here
+        existing_user = User.query.filter_by(email=form.email.data).first()
+        if existing_user:
+            flash("Email already exists!", "error")
             return redirect(url_for('auth.register'))
-
-        hashed_password = bcrypt.hashpw(password.encode('UTF-8'), bcrypt.gensalt())
-
-        new_user = User(username=username, password=hashed_password.decode('UTF-8'), email=email, role = 'user')
+        
+        # Create new user
+        hashed_password = bcrypt.hashpw(form.password.data.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+        new_user = User(username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
-
         flash('Registration successful!', 'success')
         return redirect(url_for('auth.login'))
-
-    return render_template('register.html', show_navbar=False)
+    return render_template('register.html', form=form, show_navbar=False)
 
 @auth_bp.route('/logout')
 @login_required
