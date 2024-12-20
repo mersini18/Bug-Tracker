@@ -1,0 +1,234 @@
+commit 978317f898ff5cd53fe8be97ee9591f8d017c4db
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Fri Dec 20 11:24:40 2024 +0000
+
+    added data to database
+
+commit 8c2f6ea5611d89bdd7d685b5a56c97b20e242c9d
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Fri Dec 20 11:06:29 2024 +0000
+
+    updated tests
+
+commit 2c5e4875358a4366e8faa98c13958ed4e7bfdd00
+Merge: b0c7613 2556460
+Author: Benjamin <95387990+mersini18@users.noreply.github.com>
+Date:   Fri Dec 20 10:28:26 2024 +0000
+
+    Merge pull request #9 from mersini18/projects
+    
+    Projects
+
+commit 2556460d4d56b37ea4454edb502af9b71fd9fa3d
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Thu Dec 19 23:13:47 2024 +0000
+
+    added user validation
+
+commit 280056f4108f0a06fab4fbd8429331c757944869
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Thu Dec 19 22:59:21 2024 +0000
+
+    Project page added
+
+commit b0c7613dabe96a0a3d631a8abbefedbc6894899d
+Merge: 01df73e 07d6064
+Author: Benjamin <95387990+mersini18@users.noreply.github.com>
+Date:   Thu Dec 19 17:09:10 2024 +0000
+
+    Merge pull request #8 from mersini18/admin-dashboard
+    
+    Added admin dashboard, functionality and tests.
+
+commit 07d606497780cc36bb6738edb7cee6fb9e2ce289
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Thu Dec 19 17:05:48 2024 +0000
+
+    Added admin dashboard, functionality and tests.
+
+commit 01df73e66d29c3d34de2ff3f8ae3faa25055e319
+Merge: d192aa8 e775a66
+Author: Benjamin <95387990+mersini18@users.noreply.github.com>
+Date:   Tue Dec 10 09:47:23 2024 +0000
+
+    Merge pull request #7 from mersini18/add_bug
+    
+    Added bug creation functionality + tests
+
+commit d192aa88974538c3247f4b3bcda9f6e8bad12e2f
+Merge: cd7d8ec 68d0634
+Author: Benjamin <95387990+mersini18@users.noreply.github.com>
+Date:   Tue Dec 10 09:46:16 2024 +0000
+
+    Merge pull request #6 from mersini18/bug_dashboard
+    
+    Updated styling, added bug dashboard
+
+commit e775a6626b65687f1a8c045f648f89219aa6acfc
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Tue Dec 10 09:44:56 2024 +0000
+
+    Added bug creation functionality + tests
+
+commit 68d0634d4347b7e760fc66985e135063491b9db2
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Sat Dec 7 00:37:48 2024 +0000
+
+    Updated styling, added bug dashboard
+
+commit cd7d8ec5a1ae4d967b69d71c69237a13c41d9c45
+Merge: a816d6e 47f463c
+Author: Benjamin <95387990+mersini18@users.noreply.github.com>
+Date:   Fri Dec 6 22:53:41 2024 +0000
+
+    Merge pull request #5 from mersini18/test_authentication
+    
+    Test authentication
+
+commit 47f463c42048174aa880669b833835fe5de5e2dd
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Fri Dec 6 22:52:38 2024 +0000
+
+    removed whitespace
+
+commit 342087d53d2f90113b639d9923db60084502f25d
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Fri Dec 6 17:34:36 2024 +0000
+
+    Added authentication tests
+
+commit a816d6e7d78074b098d2bf3fe80e2f1c6c421bbf
+Merge: 28e24ac 7fc06a8
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Fri Dec 6 15:54:02 2024 +0000
+
+    Merge branch 'main' into develop
+    Merged main into develop
+
+commit 28e24ace5fd079aca04765cbec4d93acf293ddc4
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Fri Dec 6 15:53:38 2024 +0000
+
+    updated gitignore
+
+commit c5aad9b6a99d4eaff3a46c3fbf7722e3be28e51a
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Fri Dec 6 15:13:32 2024 +0000
+
+    update
+
+commit 59d4195e3f51f5651daea2c381521bc8399731cc
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Fri Dec 6 15:13:05 2024 +0000
+
+    updated gitignore
+
+commit 34f487553dca7f63616134a4bad63ae6850a1765
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Fri Dec 6 15:09:55 2024 +0000
+
+    Cleaned repo
+
+commit 17f2b04ccad7847c14a8cc21d21959b9c13371f8
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Fri Dec 6 14:52:17 2024 +0000
+
+    added user session functionality, updated gitignore
+
+commit b4605457c3fb4359ad9035ec0a39c8711c289ca6
+Merge: 52d09d4 1520226
+Author: Benjamin <95387990+mersini18@users.noreply.github.com>
+Date:   Wed Dec 4 23:46:47 2024 +0000
+
+    Merge pull request #4 from mersini18/base_template
+    
+    Added a base template, updated UI
+
+commit 15202260c4c45935963736085f295eee604efa9a
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Wed Dec 4 23:43:40 2024 +0000
+
+    Added a base template, updated UI
+
+commit 52d09d4d58dcb88c5611203bd0ac2a3391eb47e5
+Merge: 9098e00 e2f5d04
+Author: Benjamin <95387990+mersini18@users.noreply.github.com>
+Date:   Wed Dec 4 21:16:15 2024 +0000
+
+    Merge pull request #3 from mersini18/user_registration
+    
+    User registration
+
+commit e2f5d04bdfaf46aee1f579fe1ab23ac706cae57b
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Wed Dec 4 21:14:29 2024 +0000
+
+    added launch.json for debugging in ide
+
+commit 820f6ed99bf20db322523b6af680e9eb661154f1
+Merge: 196b26f 9098e00
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Wed Dec 4 21:12:49 2024 +0000
+
+    Merge remote-tracking branch 'origin/develop' into user_registration
+    Merged develop into branch
+
+commit 9098e0025972a40ae3d82325912d8379a2bd86ed
+Merge: a9864ad 256bcf7
+Author: Benjamin <95387990+mersini18@users.noreply.github.com>
+Date:   Wed Dec 4 21:11:55 2024 +0000
+
+    Merge pull request #2 from mersini18/project_environment
+    
+    Project environment
+
+commit 7fc06a85cb540e9d31d73373d5387cfd65ba6052
+Merge: a9864ad d9b9309
+Author: Benjamin <95387990+mersini18@users.noreply.github.com>
+Date:   Wed Dec 4 21:10:49 2024 +0000
+
+    Merge pull request #1 from mersini18/project_scope
+    
+    Added project documents
+
+commit 196b26febccd8d2ce21f28af74280df6ce4a6eb1
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Wed Dec 4 21:09:44 2024 +0000
+
+    Added user registration and login with database functionality
+
+commit 256bcf7ba2ec6c3c0477a1535375ddf8b969ba6a
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Tue Dec 3 23:26:54 2024 +0000
+
+    update
+
+commit 492d443ea6205ba48760b06d72fe0216fcb4807f
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Tue Dec 3 23:26:24 2024 +0000
+
+    Created inital project environment. Runs.
+
+commit 810706fc08e7d59363681b98e527af2d1ca266be
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Tue Dec 3 22:24:39 2024 +0000
+
+    Added project dev environment
+
+commit d9b93094475fa146b2784fb7806c0f908b14d44b
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Tue Dec 3 21:40:14 2024 +0000
+
+    Added project documents
+
+commit a9864ad8d1985a62b9c64b671bbe512170e137b7
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Wed Oct 16 14:51:36 2024 +0100
+
+    added assignment brief
+
+commit 62e11a08054b951810bdf0aefaeb56ba43c910d7
+Author: mersini18 <benjaminmersini@hotmail.co.uk>
+Date:   Wed Oct 16 14:48:23 2024 +0100
+
+    First commit
