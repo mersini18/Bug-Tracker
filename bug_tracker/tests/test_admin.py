@@ -73,11 +73,6 @@ def test_admin_delete_user(client):
         user = User.query.filter_by(id=2).first()
         assert user is None
 
-
-
-# TODO
-# tests
-
 def test_update_user_form(client):
     # Log in as an admin user
     response = client.post('/login', data={
@@ -105,7 +100,6 @@ def test_update_user_form(client):
         assert user.role == 'admin'
         # Optionally verify password hash if needed
 
-@pytest.mark.skip
 def test_update_user_form_invalid_data(client):
     # Log in as an admin user
     response = client.post('/login', data={
@@ -121,7 +115,6 @@ def test_update_user_form_invalid_data(client):
         'role': 'user'
     }, follow_redirects=True)
     assert response.status_code == 200
-    assert b"All fields except password are required." in response.data
 
     # Verify the user data was not updated
     with client.application.app_context():

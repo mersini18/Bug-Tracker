@@ -27,16 +27,16 @@ def login():
     
     return render_template('login.html', show_navbar=False)
 
-@auth_bp.route('/register', methods=['GET','POST'])
+@auth_bp.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
-    if form.validate_on_submit():  # This checks all validations
-        # Perform server-side checks like unique email/username here
-        existing_user = User.query.filter_by(email=form.email.data).first()
+    if form.validate_on_submit():  # Form validation success
+        # Check for existing user
+        existing_user = User.query.filter_by(username=form.username.data).first()
         if existing_user:
-            flash("Email already exists!", "error")
+            flash("Username already exists!", "error")
             return redirect(url_for('auth.register'))
-        
+
         # Create new user
         hashed_password = bcrypt.hashpw(form.password.data.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
         new_user = User(username=form.username.data, email=form.email.data, password=hashed_password)
@@ -44,6 +44,13 @@ def register():
         db.session.commit()
         flash('Registration successful!', 'success')
         return redirect(url_for('auth.login'))
+    else:  # Form validation failed
+        # Handle specific validation errors and flash them
+        if form.errors:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    flash(f"{field.capitalize()}: {error}", "error")
+
     return render_template('register.html', form=form, show_navbar=False)
 
 @auth_bp.route('/logout')
