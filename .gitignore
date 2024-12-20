@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+
+bug_tracker/venv/
+bug_tracker/.pytest_cache
+bug_tracker/.vscode/
+.vscode/
+
+
+.DS_Store
+.env
