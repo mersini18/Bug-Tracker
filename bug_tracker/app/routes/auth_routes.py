@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required, current_user
 
-from app.forms import RegisterForm
+from app.forms import RegisterForm, LoginForm
 from app.models import db, User
 
 import bcrypt
@@ -10,12 +10,11 @@ auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
-
-        user = User.query.filter(User.username == username).first()
-        if user and bcrypt.checkpw(password.encode('UTF-8'), user.password.encode('UTF-8')):
+    form = LoginForm()
+    if form.validate_on_submit():
+        print("Valid form")
+        user = User.query.filter(User.username == form.username.data).first()
+        if user and bcrypt.checkpw(form.password.data.encode('UTF-8'), user.password.encode('UTF-8')):
             login_user(user)
             flash('Login successful!', 'success')
             return redirect(url_for('bug.home'))
@@ -23,9 +22,9 @@ def login():
         flash('Invalid username or password', 'error')
         return redirect(url_for('auth.login'))
 
-        
+    print("Invalid form")        
     
-    return render_template('login.html', show_navbar=False)
+    return render_template('login.html', form=form, show_navbar=False)
 
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def register():

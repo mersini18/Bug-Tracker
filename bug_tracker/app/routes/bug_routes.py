@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from app.models import db, Bug, Project, User
+from app.forms import BugForm
 
 
 bug_bp = Blueprint('bug', __name__, url_prefix='/home')
@@ -15,32 +16,21 @@ def home():
 @bug_bp.route('/add-bug', methods=['GET', 'POST'])
 @login_required
 def add_bug():
-    if request.method == 'POST':
-        title = request.form.get('title')
-        description = request.form.get('description')
-        priority = request.form.get('priority')
-        status = request.form.get('status')
-        assigned_to = request.form.get('assigned_to')
-        project_id = request.form.get('project_id')
+    form = BugForm()
 
-        if not title:
-            flash('Bug title is required', 'error')
-            return redirect(url_for('bug.add_bug'))
-        if not description:
-            flash('Bug description is required', 'error')
-            return redirect(url_for('bug.add_bug'))
-        if not project_id:
-            flash('Bug project id is required', 'error')
-            return redirect(url_for('bug.add_bug'))
-        
+    form.project_id.choices = [(project.id, project.name) for project in Project.query.all()]
+    form.assigned_to.choices = [(user.username, user.username) for user in User.query.all()]
+    form.assigned_to.choices.insert(0, ("", "Unassigned")) 
+
+    if form.validate_on_submit():
         new_bug = Bug(
-            title = title,
-            description = description,
-            priority = priority,
-            status = status,
-            project_id = project_id,
+            title = form.title.data,
+            description = form.description.data,
+            priority = form.priority.data,
+            status = form.status.data,
+            project_id = form.project_id.data,
             reported_by = current_user.username,
-            assigned_to = assigned_to if assigned_to else None
+            assigned_to = form.assigned_to.data if form.assigned_to.data else None
         )
 
         db.session.add(new_bug)
@@ -51,7 +41,7 @@ def add_bug():
     
     projects = Project.query.all()
     users = User.query.all()
-    return render_template('add_bug.html', projects=projects, users=users)
+    return render_template('add_bug.html', form=form, projects=projects, users=users)
 
 @bug_bp.route('/delete-bug/<int:bug_id>', methods=['POST'])
 @login_required

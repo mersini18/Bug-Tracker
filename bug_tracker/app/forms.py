@@ -19,14 +19,19 @@ class RegisterForm(FlaskForm):
     ])
     submit = SubmitField('Register')
 
+class LoginForm(FlaskForm):
+    username = StringField("Username", validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Login')
+
 class BugForm(FlaskForm):
-    title = StringField('Title', validators=[
-        DataRequired(),
-        Length(max=200)
+    title = StringField('Bug Title', validators=[
+        DataRequired(message="Title is required."),
+        Length(max=200, message="Title must be under 200 characters.")
     ])
     description = TextAreaField('Description', validators=[
-        DataRequired(),
-        Length(min=10)
+        DataRequired(message="Description is required."),
+        Length(min=10, message="Description must be at least 10 characters long.")
     ])
     priority = SelectField('Priority', choices=[
         ('Low', 'Low'),
@@ -38,7 +43,10 @@ class BugForm(FlaskForm):
         ('In Progress', 'In Progress'),
         ('Resolved', 'Resolved')
     ], validators=[DataRequired()])
-    submit = SubmitField('Create Bug')
+    project_id = SelectField('Project', coerce=int, validators=[DataRequired()])
+    assigned_to = SelectField('Assigned To', coerce=str, choices=[], validate_choice=False)
+    submit = SubmitField('Add Bug')
+
 
 class ProjectForm(FlaskForm):
     name = StringField('Project Name', validators=[

@@ -4,8 +4,10 @@ from flask import Flask
 from flask_login import LoginManager
 from app.models import db, User
 from dotenv import load_dotenv
+from flask_wtf.csrf import CSRFProtect
 
 login_manager = LoginManager()
+csrf = CSRFProtect()
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -26,6 +28,7 @@ def create_app(test_config=None):
 
     db.init_app(app)
     login_manager.init_app(app)
+    csrf.init_app(app)
 
     login_manager.login_view = 'auth.login'
     login_manager.login_message = 'Please log in to access this page.'
