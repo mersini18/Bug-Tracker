@@ -2,6 +2,12 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, TextAreaField, SelectField
 from wtforms.validators import DataRequired, Length, Email, Regexp, EqualTo, ValidationError
 
+
+def optional_int(value):
+    if value in (None, '', 'None'):
+        return 0
+    return int(value)
+
 class RegisterForm(FlaskForm):
     username = StringField('Username', validators=[
         DataRequired(),
@@ -20,12 +26,15 @@ class RegisterForm(FlaskForm):
     submit = SubmitField('Register')
 
 class BugForm(FlaskForm):
+    class Meta:
+        csrf = False
+
     title = StringField('Title', validators=[
-        DataRequired(),
+        DataRequired(message='Bug title is required'),
         Length(max=200)
     ])
     description = TextAreaField('Description', validators=[
-        DataRequired(),
+        DataRequired(message='Bug description is required'),
         Length(min=10)
     ])
     priority = SelectField('Priority', choices=[
@@ -38,6 +47,8 @@ class BugForm(FlaskForm):
         ('In Progress', 'In Progress'),
         ('Resolved', 'Resolved')
     ], validators=[DataRequired()])
+    project_id = SelectField('Project', coerce=int, validators=[DataRequired(message='Bug project id is required')])
+    assigned_to = SelectField('Assigned To', coerce=optional_int)
     submit = SubmitField('Create Bug')
 
 class ProjectForm(FlaskForm):
