@@ -19,7 +19,12 @@ def create_app(test_config=None):
 
     app = Flask(__name__)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bug_tracker.db'
+    database_url = os.getenv("DATABASE_URL")
+
+    if database_url:
+        app.config["SQLALCHEMY_DATABASE_URI"] = database_url
+    else:
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bug_tracker.db'
     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
     print("Database Path:", app.config['SQLALCHEMY_DATABASE_URI'])
 
