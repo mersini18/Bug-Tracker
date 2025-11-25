@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from app.models import db, Project, User
+from app.forms import ProjectForm
 
 projects_bp = Blueprint('project', __name__, url_prefix='/projects')
 
@@ -30,24 +31,20 @@ def delete_project(project_id):
 @projects_bp.route('/add-project', methods=['GET', 'POST'])
 @login_required
 def add_project():
-    if request.method == 'POST':
-        name = request.form.get('name')
-        description = request.form.get('description')
-    
-        if not name:
-            flash('Project title is required', 'error')
-            render_template('add_project.html')
-        
+    form = ProjectForm()
+
+    if form.validate_on_submit():
         new_project = Project(
-            name=name,
-            description=description 
+            name = form.name.data,
+            description = form.description.data
         )
-        
+
         db.session.add(new_project)
         db.session.commit()
 
         flash('Project created successfully', 'success')
         return redirect(url_for('project.projects'))
+    
+    projects = Project.query.all()
 
-    projects = Project.query.all
-    return render_template('add_project.html', projects=projects)
+    return render_template('add_project.html', form=form, projects=projects)
