@@ -81,7 +81,6 @@ def test_add_bug_missing_fields(client):
 
     # Assert the bug was not created
     assert response.status_code == 200
-    print(response.data.decode())
     assert b"Title is required" in response.data or b"Error" in response.data
 
     # Verify the bug does not exist in the database
