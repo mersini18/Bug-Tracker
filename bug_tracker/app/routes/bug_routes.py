@@ -33,7 +33,7 @@ def add_bug():
             priority = form.priority.data,
             status = form.status.data,
             project_id = form.project_id.data,
-            reported_by = current_user.username,
+            reported_by = current_user.id,
             assigned_to = assigned_id
         )
 
