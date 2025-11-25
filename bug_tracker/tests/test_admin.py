@@ -12,7 +12,8 @@ def client():
     app = create_app({
     'TESTING' : True,
     'SQLALCHEMY_DATABASE_URI': 'sqlite:///:memory:', # In-memory DB
-    'SECRET_KEY': 'test_secret_key'
+    'SECRET_KEY': 'test_secret_key',
+    'WTF_CSRF_ENABLED': False
     })
     print("Database URI:", app.config['SQLALCHEMY_DATABASE_URI'])
 

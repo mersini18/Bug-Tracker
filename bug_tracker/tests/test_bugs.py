@@ -13,6 +13,7 @@ def client():
     'TESTING': True,
     'SQLALCHEMY_DATABASE_URI': 'sqlite:///:memory:',  # Use an in-memory DB for tests
     'SECRET_KEY': 'test_secret_key',
+    'WTF_CSRF_ENABLED': False
     })
     with app.test_client() as client:
         with app.app_context():
@@ -80,7 +81,8 @@ def test_add_bug_missing_fields(client):
 
     # Assert the bug was not created
     assert response.status_code == 200
-    assert b"Bug title is required" in response.data or b"Error" in response.data
+    print(response.data.decode())
+    assert b"Title is required" in response.data or b"Error" in response.data
 
     # Verify the bug does not exist in the database
     with client.application.app_context():
