@@ -19,10 +19,14 @@ def add_bug():
     form = BugForm()
 
     form.project_id.choices = [(project.id, project.name) for project in Project.query.all()]
-    form.assigned_to.choices = [(user.username, user.username) for user in User.query.all()]
-    form.assigned_to.choices.insert(0, ("", "Unassigned")) 
+    users = User.query.all()
+    form.assigned_to.choices = [(0, "Unassigned")] + [(user.id, user.username) for user in users]
 
     if form.validate_on_submit():
+        assigned_id = form.assigned_to.data
+        if assigned_id == 0:
+            assigned_id = None
+
         new_bug = Bug(
             title = form.title.data,
             description = form.description.data,
@@ -30,7 +34,7 @@ def add_bug():
             status = form.status.data,
             project_id = form.project_id.data,
             reported_by = current_user.username,
-            assigned_to = form.assigned_to.data if form.assigned_to.data else None
+            assigned_to = assigned_id
         )
 
         db.session.add(new_bug)
