@@ -44,7 +44,7 @@ class BugForm(FlaskForm):
         ('Resolved', 'Resolved')
     ], validators=[DataRequired()])
     project_id = SelectField('Project', coerce=int, validators=[DataRequired()])
-    assigned_to = SelectField('Assigned To', coerce=str, choices=[], validate_choice=False)
+    assigned_to = SelectField('Assigned To', validate_choice=False)
     submit = SubmitField('Add Bug')
 
 
