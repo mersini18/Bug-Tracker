@@ -24,6 +24,9 @@
         <div class="mb-3">
             <label for="title" class="form-label">Bug Title</label>
             {{ form.title(class="form-control") }}
+            {% for error in form.title.errors %}
+                <div class="text-danger">{{ error }}</div>
+            {% endfor %}
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Description</label>
