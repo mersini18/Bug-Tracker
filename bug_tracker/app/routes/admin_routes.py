@@ -5,6 +5,8 @@ from functools import wraps
 
 import bcrypt
 
+from bug_tracker.app.Utilities.admin_utils import get_user_information_from_request, validate_update_form_fields, apply_user_update
+
 admin_bp = Blueprint('admin', __name__, url_prefix='/admin')
 
 
@@ -31,28 +33,24 @@ def update_user_form(user_id):
     user = User.query.get_or_404(user_id)
 
     if request.method == 'POST':
-        username = request.form.get('username')
-        email = request.form.get('email')
-        role = request.form.get('role')
-        password = request.form.get('password')
+        form_information = get_user_information_from_request(request, user_id)
 
-        # Validate form fields
-        if not username or not email or not role:
-            flash('All fields except password are required.', 'error')
-            return redirect(url_for('admin.update_user_form', user_id=user_id))
+        validation_response = validate_update_form_fields(form_information)
+        if validation_response:
+            return validation_response
         
-        user.username = username
-        user.email = email
-        user.role = role
+        apply_user_update(user, form_information)
 
-        if password:
-            hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
-            user.password = hashed_password
-
-        db.session.commit()
+        try:
+            db.session.commit()
+        except Exception:
+            db.session.rollback()
+            flash("Could not update user.", "error")
+            return redirect(url_for('update_user.html', user_id=user_id))
+        
         flash('User updated successfully!', 'success')
         return redirect(url_for('admin.dashboard'))
-
+    
     # Render update user form
     return render_template('update_user.html', user=user)
 
